@@ -1,0 +1,12 @@
+module PharmaciesHelper
+  def getPharmacies
+    widgets = DBF::Table.new("Pharmacies.dbf", nil, 'cp866')
+    widgets.each do |record|
+      @p=Pharmacy.new
+      @p.name = record.name
+      @p.adress = record.adress
+      @p.description = record.descriptio
+      @p.save
+    end     
+  end 
+end
