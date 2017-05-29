@@ -14,7 +14,7 @@ module GroupsHelper
   end 
 
 
-  def getkls
+  def getkls    # делаем связки продуктов с классификацией
 
     widgets = DBF::Table.new("klscmp.dbf", nil, 'cp866')
     widgets.each do |record|
