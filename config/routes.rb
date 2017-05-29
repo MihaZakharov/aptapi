@@ -11,8 +11,8 @@ end
   post 'products/searching', to: 'products#searching'
   get 'products/:id',      to: 'products#showproductsfromgroup'
 
-  get 'groups/all(:id)',   to: 'groups#all'
-  get 'groups/alln(:id)',   to: 'groups#alln'
+  get 'groups/all',   to: 'groups#all'
+  get 'groups/alln',   to: 'groups#alln'
   get 'groups/:id',        to: 'groups#showgrp'   
 
   get 'pharmacies/all(:id)',   to: 'pharmacies#all'
