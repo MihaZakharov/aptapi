@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
     res=[]
     buf={}
     @groups = Group.where('kls_parent=1612').order("name ASC").each do |grp|
-	    if grp.products.exists?
+	    if grp.products.where("price > 0").exists?
                 buf={}
 		buf[:name] = grp.name
 		buf[:id] = grp.id
