@@ -11,9 +11,9 @@ module PharmaciesHelper
   end 
 
 def uppharm
-  @p = Pharmacy.all
-  @p.each do |pharm|
-    pharm.timeopen = "8.00 - 10.00"
-    pharm.save
-  end
+#  @p = Pharmacy.all
+#  @p.each do |pharm|
+#    pharm.timeopen = "8.00 - 10.00"
+#    pharm.save
+#  end
 end
