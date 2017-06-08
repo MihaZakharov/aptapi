@@ -1,6 +1,12 @@
 class ProductsController < ApplicationController
     skip_before_filter :verify_authenticity_token
 
+def getdetailproduct
+   @hash = params[:id].to_json
+   @p = Product.find_by_id(@hash["id"])
+   render json: @p
+end
+
   def showproductsfromgroup
 
       @grp = params[:id].to_s

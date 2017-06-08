@@ -46,4 +46,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pg', '~> 0.18.4'
 gem 'devise'
 gem 'dbf'
+
 gem 'rack-cors', :require => 'rack/cors'
