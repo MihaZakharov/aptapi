@@ -43,17 +43,29 @@ def importkls
           p = Product.find_by_id(record.cmp)
           p.group_id=record.kls
           p.save
-       end
+       end                					
     end  
 end
 
 def impRLS
-	CSV.foreach('rls.csv', :headers => true) do |row|
-	  r = row.to_hash
-	  puts r
+	CSV.foreach("RLS.csv", encoding: "bom|utf-8",col_sep: ';', :quote_char => "\x00", :headers => true) do |row|
+#	CSV.foreach("RLS.csv", encoding: "bom|utf-8",row_sep: '\r\n',col_sep: ';', :quote_char => "\x00", :headers => false) do |row|
+#	CSV.new(File.open('RLS.csv', 'r:bom|utf-8'), col_sep: ';').each do |row|
+	 # r = row.split('\r\n');
+          
+          r = row.to_hash
+	  #puts r["mnn"]
+	  #@p=@r.split(';')
+#	  puts row.split(';')
+	  #puts p["name"]
+#	  puts @r["name"]
+	  #puts "row 1" || row[1]
+	  #puts "row 2" || row[2]
+	  #if r["id"] != nil
+		#if not Rl.where("id="+r["id"]).exists?
  		rl = Rl.new
+		rl.ext_id = r["id"]
 		rl.mnn = r["mnn"]
-		rl.composition = r["composition"]
 		rl.unindic = r["unindic"] 
 		rl.method = r["method"] 
 		rl.overdose = r["overdose"] 
@@ -75,6 +87,8 @@ def impRLS
 		rl.manufact = r["manufact"] 
 		rl.liter = r["liter"]
 		rl.save
+	#	end
+	#end
 	end
 
 end
