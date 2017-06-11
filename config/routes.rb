@@ -9,6 +9,7 @@ end
   
   get 'products/all(:id)', to: 'products#all'
   post 'products/searching', to: 'products#searching'
+  post 'products/detailproduct', to: 'products#dtlprod'
   get 'products/:id',      to: 'products#showproductsfromgroup'
 
   get 'groups/all',   to: 'groups#all'

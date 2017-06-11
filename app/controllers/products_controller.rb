@@ -19,6 +19,7 @@ end
 	buf[:name] = prod.name
 	buf[:id] = prod.id
 	buf[:price] = prod.price
+	buf[:ext_id] = prod.ext_id
 	buf[:group_id] = prod.group_id
 	res.push(buf)
       end
@@ -29,6 +30,12 @@ end
 
   def all
     
+  end
+
+  def dtlprod
+     @par = params[:ext_id].to_json
+     res = Rl.find_by_ext_id(@par)
+     render json: res
   end
 
   def searching
