@@ -11,6 +11,7 @@ module Aptapi
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.time_zone = "Ekaterinburg" 
 config.action_dispatch.default_headers = {
   'Access-Control-Allow-Origin' => '*',
   'Access-Control-Request-Method' => '*'
@@ -25,5 +26,3 @@ config.action_dispatch.default_headers = {
 
   end
 end
-
-
