@@ -51,4 +51,6 @@ gem 'dbf'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
+
 gem 'jquery-turbolinks'
+gem 'bootstrap_form'

@@ -1,5 +1,5 @@
 class MakeinvController < ApplicationController
-    skip_before_filter :verify_authenticity_token  
+    skip_before_filter :verify_authenticity_token
 
    def all
 
@@ -11,8 +11,8 @@ class MakeinvController < ApplicationController
 
       @hash = JSON.parse(@par)
       inv = Invoice.new
-      inv.phone_invoice=@hash["phone"]  
-      inv.status=@hash["status"] 
+      inv.phone_invoice=@hash["phone"]
+      inv.status=@hash["status"]
       inv.email=@hash["email"]
       inv.place=@hash["place"]
       inv.summ=@hash["summ"]
@@ -27,17 +27,17 @@ class MakeinvController < ApplicationController
           inv.items << items
           inv.save
       end
-      
+      InvoiceMailer.mailer(inv).deliver_later
 
       render body: @par
-   end  
+   end
 
 
 
 # {"invoice":{"phone":922705538, "email":"mihail.zaharov84@mail.ru", "status":"new",
 #             "items": [{"goodsid":12423,"price":32,"qnt":1},
 #                           {"goodsid":123,"price":12,"qnt":2}]
-#                                            
+#
 #            }
 #  }
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :percentages
  # resources :groups
  root "getinvoice#index"
 devise_scope :user do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611022437) do
+ActiveRecord::Schema.define(version: 20170619054048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,18 @@ ActiveRecord::Schema.define(version: 20170611022437) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "percentages", force: :cascade do |t|
+    t.decimal  "val_fact_1"
+    t.decimal  "val_fact_2"
+    t.decimal  "percent_fact"
+    t.decimal  "val_inv_1"
+    t.decimal  "val_inv_2"
+    t.decimal  "percent_inv"
+    t.integer  "group_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "pharmacies", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -72,6 +84,7 @@ ActiveRecord::Schema.define(version: 20170611022437) do
     t.datetime "updated_at", null: false
     t.integer  "group_id"
     t.integer  "ext_id"
+    t.decimal  "price1"
     t.index "name gist_trgm_ops", name: "trgm_idx", using: :gist
     t.index ["id"], name: "idx_id", using: :btree
   end
