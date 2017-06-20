@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619054048) do
+ActiveRecord::Schema.define(version: 20170620080021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170619054048) do
     t.string   "status"
     t.string   "place"
     t.float    "summ"
+    t.decimal  "summ_n"
+    t.integer  "inv"
   end
 
   create_table "items", force: :cascade do |t|
@@ -51,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170619054048) do
     t.integer  "invoice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal  "price1"
   end
 
   create_table "percentages", force: :cascade do |t|

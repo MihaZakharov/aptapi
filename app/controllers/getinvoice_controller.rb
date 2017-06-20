@@ -42,6 +42,7 @@ def edit
      buf[:name] = p.name
      buf[:qnt] = dtl.qnt
      buf[:price] = dtl.price
+     buf[:price1] = dtl.price1
      res.push(buf)
    end
    @dtlinv = res
@@ -62,7 +63,12 @@ end
 	buf={}
 	buf[:email] = inv.email
 	buf[:id] = inv.id
-	buf[:summ] = inv.summ
+  if inv.inv == 1
+    buf[:summ] = inv.summ
+  else
+    buf[:summ] = inv.summ_n
+  end
+
 	buf[:status] = inv.status
 	buf[:place] = inv.place
 	buf[:updated_at] = inv.updated_at.to_s(:db)

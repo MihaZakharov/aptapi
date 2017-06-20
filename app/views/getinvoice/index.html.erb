@@ -15,6 +15,7 @@
       <th>email</th>
       <th>Место выдачи</th>
       <th>Дата изменения</th>
+      <th>Способ заказ</th>
       <th>Статус заказа</th>
       <th colspan = "2" > Действие </th>
     </tr>
@@ -24,7 +25,12 @@
     <% @inv.each do |invoice| %>
       <tr>
         <td><%= invoice.id %></td>
-        <td><%= invoice.summ %></td>
+        <% if invoice.inv == 1 %>
+        <% @summ = invoice.summ %>
+        <% elsif invoice.inv == 2 %>
+        <% @summ = invoice.summ_n %>
+        <% end %>
+        <td><%= @summ %></td>
         <td><%= invoice.phone_invoice %></td>
         <td><%= invoice.email %></td>
         <% if invoice.status == "new" then %>
@@ -35,6 +41,12 @@
         <% end %>
         <td><%= invoice.place %></td>
         <td><%= invoice.updated_at%></td>
+        <% if invoice.inv == 1 then %>
+        <% @inv = "Заказ у поставщика" %>
+        <% elsif invoice.inv == 2 %>
+        <% @inv = "Из наличия" %>
+        <% end %>
+        <td><%= @inv %></td>
         <td><%= invoice.status %></td>
         <td><%= link_to 'Обработать', edit_invoice_path(invoice)  %></td>
       </tr>

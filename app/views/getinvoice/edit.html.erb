@@ -19,7 +19,12 @@
 
 <p>
   <strong>Сумма заказа:</strong>
-  <%= @inv.summ %>
+  <% if @inv.inv == 1 %>
+  <% @summ = @inv.summ %>
+  <% elsif @inv.inv == 2 %>
+  <% @summ = @inv.summ_n %>
+  <% end %>
+  <%= @summ %>
 </p>
 
 
@@ -37,8 +42,13 @@
       <tr>
         <td><%= invoice[:name] %></td>
         <td><%= invoice[:qnt] %></td>
-        <td><%= invoice[:price] %></td>
-        <td><%= invoice[:price] * invoice[:qnt]  %></td>
+        <% if @inv.inv == 1 %>
+        <% @price = invoice[:price1] %>
+        <% elsif @inv.inv == 2 %>
+        <% @price = invoice[:price] %>
+        <% end %>
+        <td><%= @price %></td>
+        <td><%= @price * invoice[:qnt]  %></td>
       </tr>
     <% end %>
   </tbody>
