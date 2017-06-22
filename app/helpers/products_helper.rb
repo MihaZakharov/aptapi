@@ -22,14 +22,15 @@ def impPrice
 		if Product.where(:id => record.nnt).exists?
 			p=Product.find_by_id(record.nnt)
 			p.price=record.price
+			p.price=record.price1
 			p.ext_id=record.ext_id
 			p.save
 		else
 		      @p=Product.new
 		      @p.id = record.nnt
-		      @p.name = record.name
-		      @p.qtn = record.qnt
+		      @p.name = record.name		      
 		      @p.price = record.price
+		      @p.price1=record.price1
 		      @p.ext_id = record.ext_id
 		      @p.save
 		end  

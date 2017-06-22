@@ -16,8 +16,8 @@ class GroupsController < ApplicationController
 		buf[:kls_unicode] = grp.kls_unicode
 		buf[:kls_childcount] = grp.kls_childcount
  	        res.push(buf)
-	    end 
-    end   
+	    end
+    end
   #  @rgroups = @group
 #    @groups = Group.where('kls_parent=1613')
 #    render json: @groups
@@ -38,8 +38,8 @@ class GroupsController < ApplicationController
 		buf[:kls_unicode] = grp.kls_unicode
 		buf[:kls_childcount] = grp.kls_childcount
  	        res.push(buf)
-	    end 
-    end   
+	    end
+    end
   #  @rgroups = @group
 #    @groups = Group.where('kls_parent=1613')
 #    render json: @groups

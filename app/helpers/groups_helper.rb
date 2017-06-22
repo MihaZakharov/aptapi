@@ -1,5 +1,5 @@
 module GroupsHelper
-  #Загружаем всю классификацию
+  #пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   def getAllGroups
     widgets = DBF::Table.new("kls.dbf", nil, 'cp866')
     widgets.each do |record|
@@ -10,21 +10,59 @@ module GroupsHelper
       @p.kls_parent = record.kls_parent
       @p.kls_childcount = record.kls_childc
       @p.save
-    end     
-  end 
+    end
+  end
 
+def refKlsCmp
+  res=[]
+  rr={}
+	CSV.foreach("klscmp.csv",:quote_char => "\x00", encoding: "windows-1251",col_sep: ',', :headers => true) do |row|
+    rr = {}
+    r = row.to_hash
+    rr[:cmp] = r["cmp"]
+    rr[:kls] = r["kls"]
+    res.push(rr)
+  end
+  res.each { |k|
+    if Product.where("id = :p",{p:k[:cmp]}).exists?
+          @p=Product.find_by_id(k[:cmp])
+          @g=Group.find_by_id(k[:kls])
+          if @p != nil and @g != nil
+             @p.groups<<@g
+             @p.save
+          end
+    end
+  }
+end
 
-  def getkls    # делаем связки продуктов с классификацией
+  def getkls    # пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     widgets = DBF::Table.new("klscmp.dbf", nil, 'cp866')
+    res=[]
+    buf={}
     widgets.each do |record|
-      @p=Product.find_by_id(record.cmp)
-      @g=Group.find_by_id(record.kls)
-      if @p != nil and @g != nil
-         @p.groups<<@g
-      end
+      buf={}
+      buf[:cmp] = record.cmp
+      buf[:kls] = record.kls
+      res.push(buf)
+#      @p=Product.find_by_id(record.cmp)
+#      @g=Group.find_by_id(record.kls)
+#      if @p != nil and @g != nil
+#         @p.groups<<@g
+#      end
 #      @p.save
-    end     
+    end
+
+    res.each { |k|
+      if Product.where("id = :p",{p:k[:cmp]}).exists?
+            @p=Product.find_by_id(k[:cmp])
+            @g=Group.find_by_id(k[:kls])
+            if @p != nil and @g != nil
+               @p.groups<<@g
+               @p.save
+            end
+      end
+    }
 
   end
 
