@@ -19,8 +19,8 @@ def refKlsCmp
 	CSV.foreach("klscmp.csv",:quote_char => "\x00", encoding: "windows-1251",col_sep: ',', :headers => true) do |row|
     rr = {}
     r = row.to_hash
-    rr[:cmp] = r["cmp"]
-    rr[:kls] = r["kls"]
+#    rr[:cmp] = r["cmp"]
+#    rr[:kls] = r["kls"]
     res.push(rr)
   end
   res.each { |k|
